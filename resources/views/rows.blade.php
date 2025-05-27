@@ -20,23 +20,20 @@
                         </thead>
                         <tbody>
                             @forelse($users as $user)
-                                {{-- Task: only every second row should have "bg-red-100" --}}
-                                <tr class="
-                                @if ($loop->iteration % 2 == 0) bg-red-100 @else text-gray-500 @endif">
+                                <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-red-100' : '' }}">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
-                                    {{-- Task: only the FIRST row should have email with "font-bold" --}}
-                                    <td class="
-                                        @if($loop->first) font-bold @else text-gray-500 @endif">
-                                    {{ $user->email }}
-                                </td>
+                                    <td class="{{ $loop->first ? 'font-bold' : 'text-gray-500' }}">
+                                        {{ $user->email }}
+                                    </td>
                                     <td>{{ $user->created_at }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan=" 4">No content</td>
+                                    <td colspan="4">No content</td>
                                 </tr>
                             @endforelse
+
                         </tbody>
                     </table>
                 </div>
