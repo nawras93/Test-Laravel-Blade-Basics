@@ -20,10 +20,10 @@
                         </thead>
                         <tbody>
                             @forelse($users as $user)
-                                <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-red-100' : '' }}">
+                                <tr class="{{ ($loop->iteration - 1) % 2 == 0 ? 'bg-red-100' : '' }}">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td class="{{ $loop->first ? 'font-bold' : 'text-gray-500' }}">
+                                    <td class="{{ $loop->first || $loop->last ? 'font-bold' : 'text-gray-500' }}">
                                         {{ $user->email }}
                                     </td>
                                     <td>{{ $user->created_at }}</td>
@@ -33,7 +33,6 @@
                                     <td colspan="4">No content</td>
                                 </tr>
                             @endforelse
-
                         </tbody>
                     </table>
                 </div>
